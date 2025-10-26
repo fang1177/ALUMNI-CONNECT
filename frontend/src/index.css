@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tailwind directives note:
+  `@tailwind` must appear before any `@layer` rules so the plugin can
+  insert base/component/utilities at the correct positions. */
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* Plain-CSS fallbacks for component classes (used when Tailwind @apply isn't processed) */
+  .btn-primary {
+    background: linear-gradient(90deg, #2563eb 0%, #7c3aed 100%);
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    transform-origin: center;
+    box-shadow: 0 10px 25px rgba(99,102,241,0.12);
+  }
+  .btn-primary:hover {
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #1e40af 0%, #6d28d9 100%);
+    box-shadow: 0 14px 30px rgba(99,102,241,0.18);
+  }
+
+  .btn-secondary {
+    background: #ffffff;
+    color: #1f2937;
+    border: 1px solid #d1d5db;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+  }
+  .btn-secondary:hover {
+    transform: scale(1.03);
+    border-color: #9ca3af;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+  }
+
+  .card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card-hover:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px rgba(2,6,23,0.08);
+  }
+
+  .glass-effect {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
+  50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.8); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
